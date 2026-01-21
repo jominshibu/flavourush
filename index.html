@@ -40,14 +40,13 @@
       top: 0;
       z-index: 1000;
       flex-wrap: wrap;
-      background: linear-gradient(180deg, var(--bg-dark), var(--bg-dark-2)); /* ✅ always solid */
+      background: linear-gradient(180deg, var(--bg-dark), var(--bg-dark-2));
       box-shadow:
         0 10px 30px rgba(0,0,0,0.65),
         inset 0 -2px 0 rgba(255, 140, 0, 0.55);
       transition: box-shadow .35s ease;
     }
 
-    /* Glow pulse when scrolling */
     header.header--glow{
       box-shadow:
         0 10px 30px rgba(0,0,0,0.65),
@@ -238,7 +237,7 @@
 
     /* Hero Section */
     .hero {
-      padding: 80px 60px; /* ✅ back to normal */
+      padding: 80px 60px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 40px;
@@ -300,6 +299,81 @@
     .service-card:hover { transform: translateY(-8px); }
     .service-card h3 { margin-bottom: 15px; color: #ff7a18; }
 
+    /* ===== ABOUT ===== */
+    .about-wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .about-card{
+      background:#fff;
+      border-radius: 22px;
+      padding: 32px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+    }
+
+    .about-card h3{
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #ff7a18;
+    }
+
+    .about-card p{
+      line-height: 1.75;
+      font-size: 16px;
+      color:#2d2d2d;
+    }
+
+    .chef-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .chef{
+      display:flex;
+      gap: 14px;
+      align-items:center;
+      padding: 16px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #0b0b0b, #141414);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.35);
+      color:#fff;
+      border: 1px solid rgba(255,183,3,0.18);
+    }
+
+    /* Chef avatar image */
+    .chef .avatar{
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex: 0 0 auto;
+    box-shadow: 0 0 16px rgba(255,140,0,0.35);
+    border: 2px solid rgba(255,183,3,0.35);
+    }
+
+.chef .avatar img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+    .chef h4{
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    .chef small{
+      opacity: 0.85;
+    }
+
     /* ===== MENU (Food cards with hover) ===== */
     .menu-grid{
       display:grid;
@@ -343,7 +417,6 @@
       box-shadow:0 10px 22px rgba(0,0,0,0.18);
     }
 
-    /* Food hover overlay */
     .menu-overlay{
       position:absolute;
       inset:0;
@@ -459,17 +532,15 @@
 
     .whatsapp-float:hover { transform: scale(1.1); }
 
-    /* Responsive */
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; text-align: center; }
       header { padding: 12px 18px; }
       section { padding: 70px 18px; }
 
-      /* Show hamburger, hide desktop nav */
       .nav-desktop { display:none; }
       .hamburger { display:flex; }
 
-      /* Show menu details on mobile (no hover) */
+      .about-wrap{ grid-template-columns: 1fr; }
       .menu-overlay{ opacity:1; transform:none; }
     }
   </style>
@@ -479,7 +550,6 @@
 
 <header id="siteHeader">
   <div class="logo-container">
-    <!-- ✅ Put your logo here: images/logo.png -->
     <img src="https://696fa45176634d918b87125d.imgix.net/IMG_9475-modified.png" alt="FLAVOURUSH Logo" class="logo">
     <h1>FLAVOURUSH</h1>
   </div>
@@ -487,6 +557,7 @@
   <nav class="nav-desktop" aria-label="Main Navigation">
     <a href="#home" class="nav-link">Home</a>
     <a href="#services" class="nav-link">Services</a>
+    <a href="#about" class="nav-link">About</a>
     <a href="#menu" class="nav-link">Menu</a>
     <a href="#order" class="nav-link">Order</a>
     <a href="#contact" class="nav-link">Contact</a>
@@ -497,10 +568,8 @@
   </button>
 </header>
 
-<!-- Mobile overlay -->
 <div class="mobile-overlay" id="mobileOverlay"></div>
 
-<!-- Mobile slide menu -->
 <aside class="mobile-menu" id="mobileMenu" aria-label="Mobile Menu">
   <div class="mobile-menu-header">
     <div class="mobile-brand">
@@ -515,6 +584,7 @@
   <nav class="nav-mobile">
     <a href="#home" class="nav-link">Home</a>
     <a href="#services" class="nav-link">Services</a>
+    <a href="#about" class="nav-link">About</a>
     <a href="#menu" class="nav-link">Menu</a>
     <a href="#order" class="nav-link">Order</a>
     <a href="#contact" class="nav-link">Contact</a>
@@ -548,18 +618,20 @@
   </div>
 </section>
 
+
 <section id="menu">
   <h2 class="section-title">Our Menu</h2>
 
   <div class="menu-grid">
     <div class="menu-card">
-      <img class="menu-img" src="https://696fa45176634d918b87125d.imgix.net/ChatGPT%20Image%20Jan%2020,%202026,%2005_53_25%20PM.png" alt="Classic Burger" loading="lazy">
+      <img class="menu-img" src="https://696fa45176634d918b87125d.imgix.net/ChatGPT%20Image%20Jan%2020,%202026,%2005_53_25%20PM.png" alt="Double Cheese Beef Burger" loading="lazy">
       <div class="menu-badge">Popular</div>
       <div class="menu-overlay">
         <div class="menu-info">
           <h3>Double Cheese Beef Burger</h3>
-          <p>Succlent beef patty, cheese, caramelized onions, house sauce.</p>
+          <p>Succulent beef patty, cheese, caramelized onions, house sauce.</p>
           <div class="menu-meta">
+            <span class="menu-price">£7.99</span>
             <button class="menu-btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order</button>
           </div>
         </div>
@@ -567,13 +639,14 @@
     </div>
 
     <div class="menu-card">
-      <img class="menu-img" src="https://696fa45176634d918b87125d.imgix.net/ChatGPT%20Image%20Jan%2020,%202026,%2005_33_20%20PM.png" alt="Loaded fries" loading="lazy">
+      <img class="menu-img" src="https://696fa45176634d918b87125d.imgix.net/ChatGPT%20Image%20Jan%2020,%202026,%2005_33_20%20PM.png" alt="Loaded Fries" loading="lazy">
       <div class="menu-badge">Best Value</div>
       <div class="menu-overlay">
         <div class="menu-info">
           <h3>Loaded Fries</h3>
           <p>Crispy fries topped with choice of cheese sauce and spicy mayo.</p>
           <div class="menu-meta">
+            <span class="menu-price">£4.99</span>
             <button class="menu-btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order</button>
           </div>
         </div>
@@ -581,12 +654,13 @@
     </div>
 
     <div class="menu-card">
-      <img class="menu-img" src="https://696fa45176634d918b87125d.imgix.net/s&p%20chicken.png" alt="Loaded fries" loading="lazy">
+      <img class="menu-img" src="https://696fa45176634d918b87125d.imgix.net/s&p%20chicken.png" alt="Salted Pepper Chicken" loading="lazy">
       <div class="menu-overlay">
         <div class="menu-info">
           <h3>Salted Pepper Chicken</h3>
-          <p>Crispy fries topped with choice of cheese sauce and spicy mayo.</p>
+          <p>Crispy chicken tossed with pepper seasoning, onions, and chillies.</p>
           <div class="menu-meta">
+            <span class="menu-price">£6.49</span>
             <button class="menu-btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order</button>
           </div>
         </div>
@@ -594,12 +668,13 @@
     </div>
 
     <div class="menu-card">
-      <img class="menu-img" src="https://696fa45176634d918b87125d.imgix.net/ChatGPT%20Image%20Jan%2020,%202026,%2005_16_37%20PM.png" alt="Chicken wrap" loading="lazy">
+      <img class="menu-img" src="https://696fa45176634d918b87125d.imgix.net/ChatGPT%20Image%20Jan%2020,%202026,%2005_16_37%20PM.png" alt="Chicken Tikka Wrap" loading="lazy">
       <div class="menu-overlay">
         <div class="menu-info">
-          <h3> Chicken Tika Wrap</h3>
-          <p>Soft flatbread filled with char-grilled chicken tikka, fresh salad, and choice of sauce.</p>
+          <h3>Chicken Tikka Wrap</h3>
+          <p>Soft flatbread with char-grilled chicken tikka, salad, and sauce.</p>
           <div class="menu-meta">
+            <span class="menu-price">£5.99</span>
             <button class="menu-btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order</button>
           </div>
         </div>
@@ -607,12 +682,13 @@
     </div>
 
     <div class="menu-card">
-      <img class="menu-img" src="https://696fa45176634d918b87125d.imgix.net/chicken-wings-buffalo-602639.png" alt="Chicken wrap" loading="lazy">
+      <img class="menu-img" src="https://696fa45176634d918b87125d.imgix.net/chicken-wings-buffalo-602639.png" alt="Chicken Wings Buffalo" loading="lazy">
       <div class="menu-overlay">
         <div class="menu-info">
           <h3>Chicken Wings Buffalo</h3>
-          <p>Crispy chicken wings, buffalo sauce, and chips.</p>
+          <p>Crispy chicken wings with buffalo sauce and chips.</p>
           <div class="menu-meta">
+            <span class="menu-price">£6.99</span>
             <button class="menu-btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order</button>
           </div>
         </div>
@@ -620,17 +696,59 @@
     </div>
 
     <div class="menu-card">
-      <img class="menu-img" src="https://696fa45176634d918b87125d.imgix.net/ChatGPT%20Image%20Jan%2020,%202026,%2004_13_24%20PM.png" alt="Fresh lemonade" loading="lazy">
+      <img class="menu-img" src="https://696fa45176634d918b87125d.imgix.net/ChatGPT%20Image%20Jan%2020,%202026,%2004_13_24%20PM.png" alt="Chilli Cauliflower" loading="lazy">
       <div class="menu-overlay">
         <div class="menu-info">
           <h3>Chilli Cauliflower</h3>
-          <p>Crispy Cauliflower with sriracha sauce .</p>
+          <p>Crispy cauliflower tossed in sriracha chilli sauce.</p>
           <div class="menu-meta">
+            <span class="menu-price">£4.49</span>
             <button class="menu-btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order</button>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- ✅ ABOUT SECTION -->
+<section id="about">
+  <h2 class="section-title">About FLAVOURUSH</h2>
+
+  <div class="about-wrap">
+    <div class="about-card">
+      <h3>Two Chefs. One Food Truck. Big Flavour.</h3>
+      <p>
+        FLAVOURUSH is a street food truck started by two passionate chefs —
+        <strong>Chef Saju Thomas</strong> and <strong>Chef Denny Joy</strong>.
+        Together, they bring bold flavours, fresh ingredients, and fast service to every event and everyday craving.
+        From juicy burgers to spicy wraps, every item is cooked with love and served with flavour.
+      </p>
+    </div>
+
+    <div class="chef-grid">
+  <div class="chef">
+    <div class="avatar">
+      <img src="images/chef-saju.jpg" alt="Chef Saju Thomas">
+    </div>
+    <div>
+      <h4>Chef. Saju Thomas</h4>
+      <small>Co-Founder • Head Chef</small>
+    </div>
+  </div>
+
+  <div class="chef">
+    <div class="avatar">
+      <img src="images/chef-denny.jpg" alt="Chef Denny Joy">
+    </div>
+    <div>
+      <h4>Chef. Denny Joy</h4>
+      <small>Co-Founder • Head Chef</small>
+    </div>
+  </div>
+   </div>
+
   </div>
 </section>
 
@@ -648,7 +766,7 @@
 </section>
 
 <footer id="contact">
-  <p><i class="fa-solid fa-envelope"></i> Email: <a href="flavourushh@gmail.com">flavourushh@gmail.com</a></p>
+  <p><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:flavourushh@gmail.com">flavourushh@gmail.com</a></p>
   <p><i class="fa-solid fa-phone"></i> Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
   <p><i class="fa-brands fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/1234567890" target="_blank">Chat with us</a></p>
   <p><i class="fa-solid fa-location-dot"></i> Location: <a href="https://www.google.com/maps/search/?api=1&query=Downtown+Food+Street+City+Center" target="_blank">Downtown Food Street, City Center</a></p>
@@ -670,9 +788,8 @@
 </a>
 
 <script>
-  // ===== Header glow pulse on scroll =====
+  // Header glow pulse on scroll
   const header = document.getElementById('siteHeader');
-
   function glowPulse() {
     if (!header) return;
     header.classList.add('header--glow');
@@ -681,7 +798,7 @@
   }
   window.addEventListener('scroll', glowPulse, { passive: true });
 
-  // ===== Active menu highlight while scrolling =====
+  // Active menu highlight while scrolling
   const sections = document.querySelectorAll('section, footer');
   const allNavLinks = document.querySelectorAll('.nav-link');
 
@@ -704,7 +821,7 @@
     setActive('home');
   }
 
-  // ===== Mobile slide-in menu =====
+  // Mobile slide-in menu
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const closeMenuBtn = document.getElementById('closeMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
